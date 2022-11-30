@@ -33,6 +33,14 @@ def get_notification(event, context):
                 "id" : id,
                 "status" : "registered"
             })
+    
+    return mentions
 
 if __name__ =="__main__":
-    get_notification(None, None)
+    mentions = get_notification(None, None)
+    for notification in mentions:
+        id = notification["id"]
+        acct = notification["account"]["acct"]
+        content = notification["status"]["content"]
+
+        print(f"id:{id}\n{acct}\n{content}")
