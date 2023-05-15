@@ -2,6 +2,7 @@ import os
 import datetime
 from mastodon import Mastodon
 from google.cloud import firestore
+import re
 
 JST = datetime.timezone(datetime.timedelta(hours=+9), "JST")
 GCP_PROJECT_ID = os.environ['GCP_PROJECT_ID']
@@ -42,5 +43,7 @@ if __name__ =="__main__":
         id = notification["id"]
         acct = notification["account"]["acct"]
         content = notification["status"]["content"]
+        content = re.sub('<.*?>', '', content)
+        content = re.sub('@sita', '', content)
 
         print(f"id:{id}\n{acct}\n{content}")
