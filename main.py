@@ -39,7 +39,7 @@ def get_notification(event, context):
 
 if __name__ =="__main__":
     mentions = get_notification(None, None)
-    for notification in mentions:
+    for notification in reversed(mentions):
         id = notification["id"]
         acct = notification["account"]["acct"]
         content = notification["status"]["content"]
